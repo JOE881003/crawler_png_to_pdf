@@ -24,14 +24,11 @@ def download_to_pdf():
 
 
     # 由此網址取得圖片連結
-    if len(soup.find_all("img", {"class": "zoom"})) < 1:
-        results = soup.find_all("img", attrs = {'style':'cursor:pointer'})
-    else:
-        results = soup.find_all("img", {"class": "zoom"})
-
-
-
-
+    
+    results_style = soup.find_all("img", attrs = {'style':'cursor:pointer'})
+    results_class = soup.find_all("img", {"class": "zoom"})
+    results = results_style + results_class
+    
     image_links = [result.get("file") for result in results if result.get("file") is not None]
 
 
@@ -67,4 +64,3 @@ def download_to_pdf():
 
 
 download_to_pdf()
-
