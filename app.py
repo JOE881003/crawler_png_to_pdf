@@ -13,7 +13,7 @@ def fetch_image_links(url: str) -> tuple[str, list]:
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
     }
     response = requests.get(url, headers=headers)
-    soup = BeautifulSoup(response.text, "lxml")
+    soup = BeautifulSoup(response.text, "html.parser")
 
     results_style = soup.find_all("img", attrs = {'style':'cursor:pointer'})
     results_class = soup.find_all("img", {"class": "zoom"})
